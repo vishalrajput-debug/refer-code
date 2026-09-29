@@ -17,24 +17,32 @@ const links = [
   "https://bikejunctionctr.vercel.app/"
 ];
 
-function openLinks20Times() {
+function openLinks5Times() {
   let count = 0;
 
   const interval = setInterval(() => {
     const randomLink = links[Math.floor(Math.random() * links.length)];
 
-    window.open(randomLink, "_blank");
+    const newTab = window.open(randomLink, "_blank");
+
+    if (newTab) {
+      // Close this tab after 2 seconds
+      setTimeout(() => {
+        newTab.close();
+      }, 2000);
+    }
 
     count++;
 
-    if (count >= 30) {
+    if (count >= 5) {
       clearInterval(interval);
     }
   }, 1000);
 }
 
-window.addEventListener("DOMContentLoaded", function () {
-  setTimeout(openLinks20Times, 2000);
+window.addEventListener("DOMContentLoaded", () => {
+  // Start after 2 seconds
+  setTimeout(openLinks5Times, 2000);
 });
 </script>
 </body>
